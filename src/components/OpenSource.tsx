@@ -118,26 +118,24 @@ export default function OpenSource() {
           <div className="grid grid-cols-52 gap-1 overflow-hidden">
             {[...Array(52)].map((_, weekIndex) => (
               <div key={weekIndex} className="flex flex-col gap-1">
-                {[...Array(7)].map((_, dayIndex) => (
-                  <motion.div
-                    key={dayIndex}
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{
-                      delay: (weekIndex * 7 + dayIndex) * 0.005,
-                    }}
-                    className={`w-3 h-3 rounded-sm ${
-                      Math.random() > 0.3
-                        ? "bg-purple-500"
-                        : Math.random() > 0.5
-                        ? "bg-purple-400"
-                        : "bg-purple-900/50"
-                    }`}
-                    style={{
-                      opacity: 0.3 + Math.random() * 0.7,
-                    }}
-                  />
-                ))}
+                {[...Array(7)].map((_, dayIndex) => {
+                  // Generate a deterministic "random" value based on position
+                  const hash = (weekIndex * 7 + dayIndex) * 17 % 100;
+                  const intensity = hash > 70 ? "bg-purple-500" : hash > 40 ? "bg-purple-400" : "bg-purple-900/50";
+                  const opacity = hash > 70 ? 1 : hash > 40 ? 0.6 : 0.3;
+                  return (
+                    <motion.div
+                      key={dayIndex}
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{
+                        delay: (weekIndex * 7 + dayIndex) * 0.003,
+                      }}
+                      className={`w-3 h-3 rounded-sm ${intensity}`}
+                      style={{ opacity }}
+                    />
+                  );
+                })}
               </div>
             ))}
           </div>
