@@ -1,16 +1,28 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Briefcase, Calendar, MapPin } from "lucide-react";
+import { Briefcase, Calendar, Users, Code2, Building2, Award } from "./Icons";
 import { experience } from "@/data/portfolio";
+
+const typeIcons: Record<string, React.ElementType> = {
+  leadership: Users,
+  opensource: Code2,
+  work: Building2,
+};
+
+const typeColors: Record<string, string> = {
+  leadership: "from-blue-500 to-cyan-500",
+  opensource: "from-green-500 to-emerald-500",
+  work: "from-purple-500 to-pink-500",
+};
 
 export default function Experience() {
   return (
-    <section id="experience" className="relative">
+    <section id="experience" className="relative py-24">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/5 to-transparent" />
 
-      <div className="relative z-10">
+      <div className="relative z-10 max-w-5xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -22,70 +34,86 @@ export default function Experience() {
           </span>
           <h2 className="section-title mt-2">Experience</h2>
           <p className="section-subtitle">
-            A timeline of my professional journey and growth
+            A timeline of my professional journey, leadership roles, and open source contributions
           </p>
         </motion.div>
 
         {/* Timeline */}
-        <div className="relative max-w-4xl mx-auto">
-          {/* Vertical Line */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-purple-500 via-pink-500 to-purple-500 transform md:-translate-x-1/2" />
+        <div className="relative">
+          {/* Center Line */}
+          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-purple-500 via-pink-500 to-purple-500 transform -translate-x-1/2 hidden md:block" />
 
-          {experience.map((exp, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
-              className={`relative flex flex-col md:flex-row gap-8 mb-12 ${
-                index % 2 === 0 ? "md:flex-row-reverse" : ""
-              }`}
-            >
-              {/* Timeline Node */}
-              <div className="absolute left-0 md:left-1/2 top-0 w-5 h-5 -translate-x-1/2 transform md:-translate-x-1/2">
-                <div className="w-full h-full rounded-full bg-gradient-to-br from-purple-500 to-pink-500 p-[3px]">
-                  <div className="w-full h-full rounded-full bg-[#0a0a0f]" />
+          {experience.map((exp, index) => {
+            const TypeIcon = typeIcons[exp.type] || Briefcase;
+            const colorClass = typeColors[exp.type] || "from-purple-500 to-pink-500";
+            const isLeft = index % 2 === 0;
+            
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className={`relative mb-12 ${
+                  isLeft ? "md:pr-1/2" : "md:pl-1/2 md:ml-auto"
+                }`}
+              >
+                {/* Timeline Node */}
+                <div className="hidden md:flex absolute top-8 left-1/2 transform -translate-x-1/2 z-10">
+                  <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${colorClass} p-[3px] shadow-lg`}>
+                    <div className="w-full h-full rounded-full bg-[#0a0a0f] flex items-center justify-center">
+                      <TypeIcon className="w-5 h-5 text-white" />
+                    </div>
+                  </div>
                 </div>
-                {/* Glow Effect */}
-                <div className="absolute inset-0 rounded-full bg-purple-500 animate-pulse-glow blur-md opacity-50" />
-              </div>
 
-              {/* Content Card */}
-              <div className={`flex-1 ml-10 md:ml-0 ${index % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"}`}>
+                {/* Mobile Node */}
+                <div className={`md:hidden flex items-center gap-4 mb-4 ${isLeft ? "flex-row-reverse" : ""}`}>
+                  <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${colorClass} p-[3px] shadow-lg flex-shrink-0`}>
+                    <div className="w-full h-full rounded-full bg-[#0a0a0f] flex items-center justify-center">
+                      <TypeIcon className="w-5 h-5 text-white" />
+                    </div>
+                  </div>
+                  <div className="flex-1 h-px bg-purple-500/30" />
+                </div>
+
+                {/* Content Card */}
                 <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className="glass-card p-6 rounded-2xl group cursor-default"
+                  whileHover={{ scale: 1.02, y: -5 }}
+                  className={`glass-card p-6 md:p-8 rounded-2xl group ml-0 md:ml-6 ${
+                    isLeft ? "md:mr-12" : "md:ml-12"
+                  }`}
                 >
-                  <div className={`flex items-center gap-2 mb-3 ${index % 2 === 0 ? "md:justify-end" : ""}`}>
-                    <Briefcase className="w-5 h-5 text-purple-400" />
-                    <span className="text-purple-400 font-medium">{exp.role}</span>
+                  {/* Type Badge */}
+                  <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r ${colorClass} text-xs font-medium text-white mb-4`}>
+                    <TypeIcon className="w-3.5 h-3.5" />
+                    {exp.type === "leadership" ? "Leadership" : exp.type === "opensource" ? "Open Source" : "Work"}
                   </div>
 
-                  <h3 className="text-xl font-semibold mb-2 group-hover:text-purple-300 transition-colors">
-                    {exp.organization}
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-purple-300 transition-colors">
+                    {exp.role}
                   </h3>
 
-                  <div className={`flex flex-wrap gap-4 text-sm text-gray-400 mb-4 ${index % 2 === 0 ? "md:justify-end" : ""}`}>
-                    <span className="flex items-center gap-1">
-                      <Calendar className="w-4 h-4" />
-                      {exp.duration}
-                    </span>
+                  <p className="text-purple-400 font-medium mb-2">{exp.organization}</p>
+
+                  <div className="flex items-center gap-2 text-sm text-gray-400 mb-4">
+                    <Calendar className="w-4 h-4" />
+                    <span>{exp.duration}</span>
                   </div>
 
                   <p className="text-gray-300 leading-relaxed">{exp.description}</p>
 
-                  {/* Decorative Element */}
-                  <div className={`absolute top-6 w-3 h-3 rotate-45 bg-purple-500/20 border border-purple-500/30 ${
-                    index % 2 === 0 ? "-right-2 hidden md:block" : "-left-2 hidden md:block"
-                  }`} />
+                  {/* Decorative Corner */}
+                  <div className={`absolute top-0 w-8 h-8 ${
+                    isLeft ? "-right-4 md:-right-4" : "-left-4 md:-left-4"
+                  }`}>
+                    <div className={`absolute top-0 w-4 h-4 rotate-45 bg-gradient-to-br ${colorClass} opacity-50`} />
+                  </div>
                 </motion.div>
-              </div>
-
-              {/* Spacer for alternating layout */}
-              <div className="hidden md:block flex-1" />
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

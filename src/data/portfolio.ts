@@ -10,7 +10,10 @@ export const personalInfo = {
   github: "https://github.com/vaishnavikhatri3",
   instagram: "https://instagram.com/vaishnavikhatri",
   medium: "https://medium.com/@vaishnavikhatri",
-  resume: "#",
+  resume: "https://drive.google.com/file/d/1N0Pk9bkA1HGQHiAPPrF0YxTYb16v2wti/view",
+  downloadResume: "https://drive.google.com/uc?export=download&id=1N0Pk9bkA1HGQHiAPPrF0YxTYb16v2wti",
+  gssoc: "https://gssoc.girlscript.org/profile/4b78c7fa-6d36-451a-836d-41dcbf0545bb",
+  holopin: "https://www.holopin.io/@vaishnavikhatri3",
   location: "Indore, Madhya Pradesh, India",
 };
 
@@ -71,17 +74,19 @@ export const skills = {
   categories: [
     {
       name: "Frontend",
+      icon: "code",
       skills: [
         { name: "HTML", level: 90 },
         { name: "CSS", level: 85 },
         { name: "JavaScript", level: 88 },
-        { name: "React.js", level: 85 },
+        { name: "React", level: 85 },
         { name: "Next.js", level: 75 },
         { name: "Tailwind CSS", level: 80 },
       ],
     },
     {
       name: "Backend",
+      icon: "server",
       skills: [
         { name: "Node.js", level: 82 },
         { name: "Express.js", level: 80 },
@@ -92,27 +97,43 @@ export const skills = {
     },
     {
       name: "Database",
+      icon: "database",
       skills: [
         { name: "MongoDB", level: 82 },
         { name: "SQL", level: 70 },
+        { name: "Supabase", level: 65 },
       ],
     },
     {
-      name: "AI/ML & Tools",
+      name: "Programming",
+      icon: "code-2",
+      skills: [
+        { name: "C", level: 75 },
+        { name: "C++", level: 72 },
+        { name: "Python", level: 78 },
+        { name: "Java", level: 70 },
+      ],
+    },
+    {
+      name: "AI/ML & Data",
+      icon: "brain",
       skills: [
         { name: "Machine Learning", level: 70 },
         { name: "NumPy", level: 75 },
-        { name: "Git/GitHub", level: 88 },
-        { name: "Figma", level: 85 },
-        { name: "Tableau", level: 70 },
+        { name: "Pandas", level: 68 },
+        { name: "Data Analysis", level: 72 },
       ],
     },
     {
-      name: "Concepts",
+      name: "Tools & Design",
+      icon: "wrench",
       skills: [
-        { name: "DSA", level: 75 },
-        { name: "OOP", level: 80 },
-        { name: "REST APIs", level: 82 },
+        { name: "Git", level: 88 },
+        { name: "GitHub", level: 88 },
+        { name: "Figma", level: 85 },
+        { name: "Power BI", level: 70 },
+        { name: "Tableau", level: 68 },
+        { name: "Canva", level: 80 },
       ],
     },
   ],
@@ -124,18 +145,42 @@ export const experience = [
     organization: "Google Developer Group (GDG) - IIPS DAVV",
     duration: "Oct 2025 – Present",
     description: "Leading Android development initiatives and mentoring students in mobile app development.",
+    type: "leadership",
   },
   {
     role: "Design Lead",
     organization: "Google Developer Group (GDG) - IIPS DAVV",
     duration: "Oct 2024 – Oct 2025",
     description: "Managed event branding, promotional designs, and UI/UX assets for developer community events.",
+    type: "leadership",
+  },
+  {
+    role: "Open Source Contributor",
+    organization: "GirlScript Summer of Code (GSSOC)",
+    duration: "2026 – Present",
+    description: "Currently contributing to open-source projects under GSSoC and collaborating with developers across the community.",
+    type: "opensource",
+  },
+  {
+    role: "Open Source Contributor",
+    organization: "NSOC (National Summer of Code)",
+    duration: "2026 – Present",
+    description: "Active contributor in NSOC working on real-world development projects and open-source initiatives.",
+    type: "opensource",
+  },
+  {
+    role: "Hacktoberfest Contributor (2x)",
+    organization: "DigitalOcean",
+    duration: "2024 – 2025",
+    description: "Contributed to open-source repositories across multiple projects and successfully completed Hacktoberfest in two editions.",
+    type: "opensource",
   },
   {
     role: "Government Intern",
     organization: "AICTSL - Indore Municipal Corporation",
     duration: "Dec 2025 – Jan 2026",
     description: "Analyzed Indore's public transport system, studying BRTS operations and urban mobility challenges.",
+    type: "work",
   },
 ];
 
@@ -146,7 +191,6 @@ export const projects = [
     technologies: ["React.js", "Node.js", "MongoDB", "FastAPI", "ML"],
     github: "https://github.com/vaishnavikhatri3",
     live: "#",
-    image: "/project-placeholder.jpg",
   },
   {
     title: "KanoonMitra – AI Legal Assistant",
@@ -154,7 +198,6 @@ export const projects = [
     technologies: ["React.js", "FastAPI", "MongoDB", "OpenAI"],
     github: "https://github.com/vaishnavikhatri3",
     live: "#",
-    image: "/project-placeholder.jpg",
   },
   {
     title: "Hallucination Citation Verification",
@@ -162,7 +205,27 @@ export const projects = [
     technologies: ["Python", "NLP", "FastAPI", "React.js"],
     github: "https://github.com/vaishnavikhatri3",
     live: "#",
-    image: "/project-placeholder.jpg",
+  },
+  {
+    title: "E-Commerce Platform",
+    description: "Full-stack e-commerce application with payment integration and admin dashboard.",
+    technologies: ["React", "Node.js", "MongoDB", "Stripe"],
+    github: "#",
+    live: "#",
+  },
+  {
+    title: "Task Management App",
+    description: "Collaborative task management tool with real-time updates and team features.",
+    technologies: ["Next.js", "Supabase", "Tailwind CSS"],
+    github: "#",
+    live: "#",
+  },
+  {
+    title: "Weather Dashboard",
+    description: "Beautiful weather app with location-based forecasts and interactive maps.",
+    technologies: ["React", "OpenWeather API", "Chart.js"],
+    github: "#",
+    live: "#",
   },
 ];
 
@@ -195,28 +258,61 @@ export const achievements = {
       description: "Led technical initiatives and mentored peers in programming",
     },
   ],
+  opensource: [
+    {
+      title: "Hacktoberfest Contributor",
+      badge: "2x Contributor",
+      description: "Successfully completed Hacktoberfest in 2024 and 2025",
+    },
+    {
+      title: "GSSoC Contributor",
+      badge: "2026",
+      description: "Contributing to open-source projects under GirlScript Summer of Code",
+    },
+    {
+      title: "NSOC Contributor",
+      badge: "2026",
+      description: "Active contributor in National Summer of Code",
+    },
+  ],
 };
 
 export const certifications = [
   {
-    title: "Hacktoberfest Contributor",
-    issuer: "DigitalOcean",
-    date: "2024 & 2025",
-  },
-  {
-    title: "Google Developer Groups Member",
-    issuer: "Google",
-    date: "2024 - Present",
-  },
-  {
-    title: "NSS Volunteer",
-    issuer: "National Service Scheme",
-    date: "2023 - Present",
-  },
-  {
-    title: "Superwoman - Friends of Figma",
-    issuer: "Figma Community",
+    title: "AWS Cloud Practitioner",
+    issuer: "Amazon Web Services",
     date: "2024",
+    status: "completed",
+  },
+  {
+    title: "Meta Frontend Developer",
+    issuer: "Meta",
+    date: "2024",
+    status: "completed",
+  },
+  {
+    title: "Google UX Design",
+    issuer: "Google",
+    date: "2023",
+    status: "completed",
+  },
+  {
+    title: "MongoDB Developer",
+    issuer: "MongoDB University",
+    date: "2023",
+    status: "completed",
+  },
+  {
+    title: "Machine Learning Certificate",
+    issuer: "Coming Soon",
+    date: "2025",
+    status: "pending",
+  },
+  {
+    title: "React Developer Certification",
+    issuer: "Coming Soon",
+    date: "2025",
+    status: "pending",
   },
 ];
 
@@ -250,7 +346,6 @@ export const navLinks = [
   { name: "Contact", href: "#contact" },
 ];
 
-// Hackathons attended
 export const hackathons = [
   "Flowathon (FFDG Indore)",
   "DevCraft Hackathon (2x, IIT Indore)",
@@ -258,3 +353,11 @@ export const hackathons = [
   "Code Slayers Hackathon (National Level, NIT Delhi)",
   "Indore Tech Hackathon (IMC Indore)",
 ];
+
+export const githubStats = {
+  contributions: 500,
+  repos: 15,
+  stars: 50,
+  followers: 100,
+  languages: ["JavaScript", "Python", "TypeScript", "HTML/CSS"],
+};
