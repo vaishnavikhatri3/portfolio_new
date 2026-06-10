@@ -2,52 +2,54 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Code2, Server, Database, Wrench, Palette } from "lucide-react";
+import { Code2, Server, Database, Wrench, Palette, Brain, Monitor, GitBranch } from "./Icons";
 import { skills } from "@/data/portfolio";
 
 const categoryIcons: Record<string, React.ElementType> = {
   Frontend: Code2,
   Backend: Server,
   Database: Database,
-  Tools: Wrench,
-  Design: Palette,
+  Programming: Code2,
+  "AI/ML & Data": Brain,
+  "Tools & Design": Wrench,
 };
 
 export default function Skills() {
   const [activeCategory, setActiveCategory] = useState(skills.categories[0].name);
 
   return (
-    <section id="skills" className="relative">
+    <section id="skills" className="relative py-24">
       {/* Background Glow */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-[150px] -translate-y-1/2" />
-      <div className="absolute top-1/2 right-0 w-96 h-96 bg-pink-500/10 rounded-full blur-[150px] -translate-y-1/2" />
+      <div className="absolute top-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-[150px] -translate-y-1/2" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-pink-500/10 rounded-full blur-[150px] translate-y-1/2" />
 
-      <div className="relative z-10">
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
           <span className="text-purple-400 text-sm font-semibold tracking-wider uppercase">
-            What I know
+            What I Know
           </span>
           <h2 className="section-title mt-2">Skills & Technologies</h2>
           <p className="section-subtitle">
-            Here are the technologies and tools I use to bring ideas to life
+            A comprehensive overview of my technical expertise and tools
           </p>
         </motion.div>
 
-        {/* Category Tabs */}
+        {/* Category Tabs - Horizontal Scroll */}
         <div className="flex flex-wrap justify-center gap-3 mb-12">
           {skills.categories.map((category) => {
-            const Icon = categoryIcons[category.name] || Code2;
+            const Icon = categoryIcons[category.icon] || Code2;
+            const isActive = activeCategory === category.name;
             return (
               <motion.button
                 key={category.name}
                 onClick={() => setActiveCategory(category.name)}
                 className={`flex items-center gap-2 px-5 py-3 rounded-xl transition-all duration-300 ${
-                  activeCategory === category.name
+                  isActive
                     ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/30"
                     : "glass-card text-gray-300 hover:text-white hover:bg-purple-500/20"
                 }`}
@@ -55,13 +57,13 @@ export default function Skills() {
                 whileTap={{ scale: 0.95 }}
               >
                 <Icon className="w-5 h-5" />
-                {category.name}
+                <span className="font-medium">{category.name}</span>
               </motion.button>
             );
           })}
         </div>
 
-        {/* Skills Grid */}
+        {/* Skills Grid - Card Based */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skills.categories
             .find((cat) => cat.name === activeCategory)
@@ -71,31 +73,31 @@ export default function Skills() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 }}
-                className="glass-card p-6 rounded-xl group cursor-default"
+                className="glass-card p-5 rounded-xl group cursor-default hover:bg-purple-500/15 transition-all duration-300"
               >
                 <div className="flex justify-between items-center mb-3">
-                  <span className="font-medium group-hover:text-purple-300 transition-colors">
+                  <span className="font-semibold text-white group-hover:text-purple-300 transition-colors">
                     {skill.name}
                   </span>
-                  <span className="text-sm text-purple-400 font-semibold">
+                  <span className="text-sm text-purple-400 font-bold">
                     {skill.level}%
                   </span>
                 </div>
-                <div className="h-2 bg-purple-900/30 rounded-full overflow-hidden">
+                <div className="h-2.5 bg-purple-900/30 rounded-full overflow-hidden">
                   <motion.div
                     className="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full relative"
                     initial={{ width: 0 }}
                     animate={{ width: `${skill.level}%` }}
                     transition={{ duration: 1, delay: index * 0.1, ease: "easeOut" }}
                   >
-                    <div className="absolute inset-0 bg-white/20 animate-shimmer" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer" />
                   </motion.div>
                 </div>
               </motion.div>
             ))}
         </div>
 
-        {/* All Technologies Grid */}
+        {/* All Skills Overview - Chip Grid */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -103,16 +105,16 @@ export default function Skills() {
           className="mt-16"
         >
           <h3 className="text-2xl font-semibold text-center mb-8">All Technologies</h3>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-3">
             {skills.categories.flatMap((cat) => cat.skills).map((skill, index) => (
               <motion.span
                 key={skill.name}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.02 }}
-                whileHover={{ scale: 1.1, y: -5 }}
-                className="px-5 py-2 rounded-full glass-card text-sm cursor-default hover:bg-purple-500/30 transition-all"
+                transition={{ delay: index * 0.01 }}
+                whileHover={{ scale: 1.1, y: -3 }}
+                className="px-4 py-2 rounded-full glass-card text-sm cursor-default hover:bg-purple-500/30 transition-all border border-transparent hover:border-purple-500/30"
               >
                 {skill.name}
               </motion.span>
