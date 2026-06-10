@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Send } from "lucide-react";
-import { Github, Linkedin, Instagram, Mail, MapPin } from "./Icons";
+import { Github, Linkedin, Instagram, Mail, MapPin, Phone } from "./Icons";
 import { personalInfo } from "@/data/portfolio";
 
 export default function Contact() {
@@ -76,6 +76,16 @@ export default function Contact() {
                     <Mail className="w-5 h-5 text-purple-400" />
                   </div>
                   <span>{personalInfo.email}</span>
+                </a>
+
+                <a
+                  href={`tel:${personalInfo.phone}`}
+                  className="flex items-center gap-4 text-gray-300 hover:text-purple-400 transition-colors group"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center group-hover:bg-purple-500/20 transition-colors">
+                    <Phone className="w-5 h-5 text-purple-400" />
+                  </div>
+                  <span>{personalInfo.phone}</span>
                 </a>
 
                 <div className="flex items-center gap-4 text-gray-300">
