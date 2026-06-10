@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Code2, Server, Database, Wrench, Palette, Brain, Monitor, GitBranch } from "./Icons";
+import { Code2, Server, Database, Wrench, Brain } from "./Icons";
 import { skills } from "@/data/portfolio";
 
 const categoryIcons: Record<string, React.ElementType> = {

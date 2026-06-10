@@ -91,8 +91,6 @@ export const skills = {
         { name: "Node.js", level: 82 },
         { name: "Express.js", level: 80 },
         { name: "FastAPI", level: 75 },
-        { name: "Python", level: 78 },
-        { name: "Java", level: 70 },
       ],
     },
     {
